@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import io
+import os
 
 from setuptools import find_packages
 from setuptools import setup
@@ -34,7 +35,12 @@ extras = {"aiohttp": "aiohttp >= 3.6.2, < 4.0.0dev; python_version>='3.6'"}
 with io.open("README.rst", "r") as fh:
     long_description = fh.read()
 
-version = "1.25.0"
+package_root = os.path.abspath(os.path.dirname(__file__))
+
+version = {}
+with open(os.path.join(package_root, "google/auth/version.py")) as fp:
+    exec(fp.read(), version)
+version = version["__version__"]
 
 setup(
     name="google-auth",
