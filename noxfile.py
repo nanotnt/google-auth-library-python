@@ -64,9 +64,7 @@ def lint(session):
 @nox.session(python="3.6")
 def blacken(session):
     """Run black.
-
     Format code to uniform standard.
-
     This currently uses Python 3.6 due to the automated Kokoro run of synthtool.
     That run uses an image that doesn't have 3.6 installed. Before updating this
     check the state of the `gcp_ubuntu_config` we use for that Kokoro run.
@@ -92,8 +90,8 @@ def unit(session):
 
 @nox.session(python=["2.7"])
 def unit_prev_versions(session):
-    session.install(*TEST_DEPENDENCIES)
     session.install(".")
+    session.install(*TEST_DEPENDENCIES)
     session.run(
         "pytest", "--cov=google.auth", "--cov=google.oauth2", "--cov=tests", "tests"
     )

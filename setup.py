@@ -30,7 +30,10 @@ DEPENDENCIES = (
     "six>=1.9.0",
 )
 
-extras = {"aiohttp": "aiohttp >= 3.6.2, < 4.0.0dev; python_version>='3.6'"}
+extras = {
+    "aiohttp": "aiohttp >= 3.6.2, < 4.0.0dev; python_version>='3.6'",
+    "pyopenssl": "pyopenssl>=20.0.0",
+}
 
 with io.open("README.rst", "r") as fh:
     long_description = fh.read()
@@ -41,6 +44,7 @@ version = {}
 with open(os.path.join(package_root, "google/auth/version.py")) as fp:
     exec(fp.read(), version)
 version = version["__version__"]
+
 
 setup(
     name="google-auth",
